@@ -3,9 +3,7 @@ package cz.hany.txCollectorServiceDemo.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import javax.persistence.CollectionTable;
@@ -24,15 +22,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-
 @Entity
-@Table(name = "transactions")
-//        indexes = {
-//                @Index(columnList = "transactionId"),
-//                @Index(columnList = "time"),
-//                @Index(columnList = "type"),
-//                @Index(columnList = "actor")
-//})
+@Table(indexes = {
+                @Index(columnList = "transactionId"),
+                @Index(columnList = "time"),
+                @Index(columnList = "type"),
+                @Index(columnList = "actor")
+        },
+        name = "transactions")
 public class Transaction {
     @Id
     @GeneratedValue
